@@ -1,1 +1,13 @@
-<button mat-button>Add</button>
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Todo..." [(ngModel)]="todoInput" name="todoInput">
+  </mat-form-field>
+  <button mat-button (click)="onAddClick()">Add</button>
+</form>
+
+
+<ul>
+  <li *ngFor="let todo of todos">
+    {{todo}}
+  </li>
+</ul>
