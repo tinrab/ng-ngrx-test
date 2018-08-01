@@ -5,9 +5,8 @@
   <button mat-button (click)="onAddClick()">Add</button>
 </form>
 
-
 <ul>
-  <li *ngFor="let todo of todos">
+  <li *ngFor="let todo of todos$ | async">
     {{todo}}
   </li>
 </ul>

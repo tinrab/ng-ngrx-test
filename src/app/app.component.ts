@@ -7,11 +7,12 @@ import { actions, State } from './state/store';
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   public todoInput: string;
-  public todos: string[];
+  public todos$: Observable<string[]>;
 
   constructor(private store: Store<State>) {
+    this.todos$ = store.pipe(select(state => state.todo.todos));
   }
 
   public onAddClick(): void {
@@ -21,13 +22,5 @@ export class AppComponent implements OnInit {
     }
     this.store.dispatch(actions.addTood(this.todoInput));
     this.todoInput = '';
-  }
-
-  public ngOnInit(): void {
-    this.store.subscribe(state => {
-      console.log(state);
-
-      this.todos = state.todo.todos;
-    });
   }
 }
